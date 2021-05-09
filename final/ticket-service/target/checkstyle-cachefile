@@ -1,0 +1,20 @@
+#Sun May 09 16:05:54 CEST 2021
+configuration*?=2479E4BBDE2F1DD38317061C3260756ADDCA41B0
+C\:\\Users\\Dpara\\Desktop\\epam-deik-java-dev\\final\\ticket-service\\src\\main\\java\\com\\epam\\training\\ticketservice\\presentation\\cli\\CliApplication.java=1620392362746
+C\:\\Users\\Dpara\\Desktop\\epam-deik-java-dev\\final\\ticket-service\\src\\main\\java\\com\\epam\\training\\ticketservice\\dataaccess\\init\\UserDatabaseInitializer.java=1620415105301
+C\:\\Users\\Dpara\\Desktop\\epam-deik-java-dev\\final\\ticket-service\\src\\main\\java\\com\\epam\\training\\ticketservice\\dataaccess\\projection\\RoomProjection.java=1620398742369
+C\:\\Users\\Dpara\\Desktop\\epam-deik-java-dev\\final\\ticket-service\\src\\main\\java\\com\\epam\\training\\ticketservice\\presentation\\cli\\configuration\\CliConfiguration.java=1620392362828
+C\:\\Users\\Dpara\\Desktop\\epam-deik-java-dev\\final\\ticket-service\\src\\main\\java\\com\\epam\\training\\ticketservice\\repository\\impl\\JpaMovieRepository.java=1620413634591
+C\:\\Users\\Dpara\\Desktop\\epam-deik-java-dev\\final\\ticket-service\\src\\main\\java\\com\\epam\\training\\ticketservice\\dataaccess\\dao\\UserDao.java=1620392362737
+C\:\\Users\\Dpara\\Desktop\\epam-deik-java-dev\\final\\ticket-service\\src\\main\\java\\com\\epam\\training\\ticketservice\\exception\\UserNotFoundException.java=1620507941492
+C\:\\Users\\Dpara\\Desktop\\epam-deik-java-dev\\final\\ticket-service\\src\\main\\java\\com\\epam\\training\\ticketservice\\dataaccess\\dao\\ScreeningDao.java=1620416862894
+C\:\\Users\\Dpara\\Desktop\\epam-deik-java-dev\\final\\ticket-service\\src\\main\\java\\com\\epam\\training\\ticketservice\\dataaccess\\projection\\ScreeningProjection.java=1620418967135
+C\:\\Users\\Dpara\\Desktop\\epam-deik-java-dev\\final\\ticket-service\\src\\main\\resources\\application.properties=1620548718011
+C\:\\Users\\Dpara\\Desktop\\epam-deik-java-dev\\final\\ticket-service\\src\\main\\java\\com\\epam\\training\\ticketservice\\presentation\\cli\\TicketServicePromptProvider.java=1620508929076
+module-resource*?\:checkstyle-xpath-suppressions.xml=B5A256A8C8B9B18501C8A55C7E2265FA34B62F23
+module-resource*?\:checkstyle-suppressions.xml=34ECE2C48B8BF6BFBF9752D9BAE29F3FAAB423D5
+C\:\\Users\\Dpara\\Desktop\\epam-deik-java-dev\\final\\ticket-service\\src\\main\\java\\com\\epam\\training\\ticketservice\\exception\\PasswordDoesntMatchException.java=1620507941514
+C\:\\Users\\Dpara\\Desktop\\epam-deik-java-dev\\final\\ticket-service\\src\\main\\java\\com\\epam\\training\\ticketservice\\dataaccess\\dao\\RoomDao.java=1620415105284
+C\:\\Users\\Dpara\\Desktop\\epam-deik-java-dev\\final\\ticket-service\\src\\main\\java\\com\\epam\\training\\ticketservice\\repository\\UserRepository.java=1620392362755
+C\:\\Users\\Dpara\\Desktop\\epam-deik-java-dev\\final\\ticket-service\\src\\main\\java\\com\\epam\\training\\ticketservice\\dataaccess\\configuration\\JpaConfiguration.java=1620392362859
+C\:\\Users\\Dpara\\Desktop\\epam-deik-java-dev\\final\\ticket-service\\src\\main\\java\\com\\epam\\training\\ticketservice\\dataaccess\\dao\\MovieDao.java=1620415105318
