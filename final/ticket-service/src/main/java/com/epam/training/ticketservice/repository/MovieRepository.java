@@ -8,7 +8,10 @@ import java.util.List;
 @Repository
 public interface MovieRepository {
     void saveMovie(Movie movie);
+
     List<Movie> getAllMovie();
+
     void removeMovie(Movie movieToDelete);
+
     void updateMovie(Movie oldMovie, Movie newMovie);
 }

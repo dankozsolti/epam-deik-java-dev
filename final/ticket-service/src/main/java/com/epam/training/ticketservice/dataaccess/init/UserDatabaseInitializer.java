@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 
 @Component
-@Profile("! prod")
 public class UserDatabaseInitializer {
 
     private final UserDao userDao;

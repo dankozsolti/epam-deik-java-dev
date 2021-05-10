@@ -31,8 +31,12 @@ public class SimpleRoom implements Room {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         SimpleRoom that = (SimpleRoom) o;
         return seatRowCount == that.seatRowCount && seatColCount == that.seatColCount && roomName.equals(that.roomName);
     }
@@ -44,10 +48,10 @@ public class SimpleRoom implements Room {
 
     @Override
     public String toString() {
-        return "SimpleRoom{" +
-                "roomName='" + roomName + '\'' +
-                ", seatRowCount=" + seatRowCount +
-                ", seatColCount=" + seatColCount +
-                '}';
+        return "SimpleRoom{"
+            + "roomName='" + roomName + '\''
+            + ", seatRowCount=" + seatRowCount
+            + ", seatColCount=" + seatColCount
+            + '}';
     }
 }

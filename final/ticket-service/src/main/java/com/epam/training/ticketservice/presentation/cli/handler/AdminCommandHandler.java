@@ -8,9 +8,7 @@ import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellMethodAvailability;
 
-/**
- * Command handler for admin commands
- */
+
 @ShellComponent
 public class AdminCommandHandler extends UserCommandAvailability {
 
@@ -28,15 +26,15 @@ public class AdminCommandHandler extends UserCommandAvailability {
         } catch (UserNotFoundException | PasswordDoesntMatchException e) {
             return "Login failed due to incorrect credentials";
         }
-        return "";
+        return null;
     }
 
     @ShellMethod(value = "Describes the signed in account", key = "describe account")
     public String describeAccount() {
-        if(!userService.isUserLoggedIn()){
+        if (!userService.isUserLoggedIn()) {
             return "You are not signed in";
         }
-        return "Signed in with privileged account '" + userService.getLoggedInUser().getUsername()+"'";
+        return "Signed in with privileged account '" + userService.getLoggedInUser().getUsername() + "'";
     }
 
     @ShellMethod(value = "Signs out of the current account", key = "sign out")

@@ -17,7 +17,7 @@ import java.util.List;
 @Service
 public class ScreeningService {
 
-    String TIME_PATTERN = "yyyy-MM-dd kk:mm";
+    String timePattern = "yyyy-MM-dd kk:mm";
 
     private MovieRepository movieRepository;
     private ScreeningRepository screeningRepository;
@@ -30,20 +30,21 @@ public class ScreeningService {
 
     public String createScreening(String title, String roomName, Date startTime) {
         Screening screening = new SimpleScreening(title, roomName, startTime);
-        if (isOverlappingMovie(roomName,startTime)) {
-            return "There is an overlapping screening";
-        } else if (isOverlappingBreak(roomName,startTime)) {
-            return "This would start in the break period after another screening in this room";
-        } else {
-            screeningRepository.saveScreening(screening);
-            return "";
+        switch (isOverlapping(roomName, startTime)) {
+            case 0:
+                screeningRepository.saveScreening(screening);
+                return null;
+            case 1:
+                return "There is an overlapping screening";
+            case 2:
+                return "This would start in the break period after another screening in this room";
+            default:
+                return null;
         }
-
-
     }
 
     public void removeScreening(String title, String roomName, Date startTime) {
-        Screening screeningToRemove = new SimpleScreening(title,roomName,startTime);
+        Screening screeningToRemove = new SimpleScreening(title, roomName, startTime);
         screeningRepository.removeScreening(screeningToRemove);
     }
 
@@ -51,68 +52,56 @@ public class ScreeningService {
         List<Screening> screenings = screeningRepository.getAllScreening();
         StringBuilder screeningsString = new StringBuilder();
 
-        if(screenings.isEmpty()) {
+        if (screenings.isEmpty()) {
             screeningsString.append("There are no screenings");
         } else {
             for (Screening s : screenings) {
                 Movie m = getMatchingMovie(s.getTitle());
 
                 screeningsString.append(s.getTitle()).append(" (")
-                        .append(m.getGenre()).append(", ").append(m.getDuration())
-                        .append(" minutes), screened in room ").append(s.getRoomName())
-                        .append(", at ").append(formatDate(s.getStartTime())).append("\n");
+                    .append(m.getGenre()).append(", ").append(m.getDuration())
+                    .append(" minutes), screened in room ").append(s.getRoomName())
+                    .append(", at ").append(formatDate(s.getStartTime())).append("\n");
             }
         }
         return screeningsString.toString().trim();
     }
 
-    private boolean isOverlappingMovie(String roomName, Date startTime) {
-        List<Screening> screenings = screeningRepository.getAllScreening();
-        for (Screening s : screenings) {
-            Date start = s.getStartTime();
-            Date end = new Date(start.getTime()
-                    + (1000 * 60)
-                    * getMatchingMovie(s.getTitle()).getDuration());
-
-            if (startTime.getTime() >= start.getTime() && startTime.getTime() <= end.getTime()
-                    && s.getRoomName().equals(roomName)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private boolean isOverlappingBreak(String roomName, Date startTime) {
+    private int isOverlapping(String roomName, Date startTime) {
         List<Screening> screenings = screeningRepository.getAllScreening();
         for (Screening s : screenings) {
             Date startOfMovie = s.getStartTime();
-            Date startOfBreak = new Date(startOfMovie.getTime()
-                    + (1000 * 60)
-                    * getMatchingMovie(s.getTitle()).getDuration());
-            Date endOfBreak = new Date(startOfBreak.getTime() + (1000*60*10));
-
-            if (startTime.getTime() >= startOfBreak.getTime() && startTime.getTime() <= endOfBreak.getTime()
-                    && s.getRoomName().equals(roomName)) {
-                return true;
+            Date endOfMovie = new Date(startOfMovie.getTime()
+                + (1000 * 60)
+                * getMatchingMovie(s.getTitle()).getDuration());
+            Date endOfBreak = new Date(endOfMovie.getTime() + (1000 * 60 * 10));
+            if (startTime.getTime() >= startOfMovie.getTime()
+                && startTime.getTime() < endOfMovie.getTime()
+                && s.getRoomName().equals(roomName)) {
+                return 1;
+            } else if (startTime.getTime() >= endOfMovie.getTime()
+                && startTime.getTime() <= endOfBreak.getTime()
+                && s.getRoomName().equals(roomName)) {
+                return 2;
             }
         }
-        return false;
+        return 0;
     }
 
-    private Movie getMatchingMovie(String s){
+    private Movie getMatchingMovie(String s) {
         return movieRepository.getAllMovie().stream()
-                .filter(movie -> movie.getTitle().equals(s))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("No title found"));
+            .filter(movie -> movie.getTitle().equals(s))
+            .findFirst()
+            .orElseThrow(() -> new IllegalArgumentException("No title found"));
     }
 
-    private String formatDate(Date date){
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(TIME_PATTERN);
+    private String formatDate(Date date) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(timePattern);
         return simpleDateFormat.format(date);
     }
 
     public Date toDate(String s) throws ParseException {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(TIME_PATTERN);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(timePattern);
         return simpleDateFormat.parse(s);
     }
 }

@@ -15,26 +15,26 @@ public class MovieCommandHandler extends UserCommandAvailability {
         this.movieService = movieService;
     }
 
-    @ShellMethod(value = "Create given movie", key="create movie")
+    @ShellMethod(value = "Create given movie", key = "create movie")
     @ShellMethodAvailability("isUserAdmin")
     public void createMovie(String title, String genre, String duration) {
-        movieService.createMovie(title,genre,Integer.parseInt(duration));
+        movieService.createMovie(title, genre, Integer.parseInt(duration));
     }
 
-    @ShellMethod(value = "Update given movie", key="update movie")
+    @ShellMethod(value = "Update given movie", key = "update movie")
     @ShellMethodAvailability("isUserAdmin")
-    public void updateMovie(String title, String genre, String duration){
-        movieService.updateMovie(title,genre,Integer.parseInt(duration));
+    public void updateMovie(String title, String genre, String duration) {
+        movieService.updateMovie(title, genre, Integer.parseInt(duration));
     }
 
-    @ShellMethod(value = "Delete given movie", key="delete movie")
+    @ShellMethod(value = "Delete given movie", key = "delete movie")
     @ShellMethodAvailability("isUserAdmin")
-    public void deleteMovie(String title){
+    public void deleteMovie(String title) {
         movieService.removeMovie(title);
     }
 
-    @ShellMethod(value = "List all movies", key="list movies")
-    public String listMovies(){
+    @ShellMethod(value = "List all movies", key = "list movies")
+    public String listMovies() {
         return movieService.listMovies();
     }
 }

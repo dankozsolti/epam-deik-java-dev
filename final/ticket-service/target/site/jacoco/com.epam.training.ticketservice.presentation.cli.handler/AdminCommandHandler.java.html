@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="hu"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AdminCommandHandler.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ticket-service</a> &gt; <a href="index.source.html" class="el_package">com.epam.training.ticketservice.presentation.cli.handler</a> &gt; <span class="el_source">AdminCommandHandler.java</span></div><h1>AdminCommandHandler.java</h1><pre class="source lang-java linenums">package com.epam.training.ticketservice.presentation.cli.handler;
+
+import com.epam.training.ticketservice.exception.PasswordDoesntMatchException;
+import com.epam.training.ticketservice.exception.UserNotFoundException;
+import com.epam.training.ticketservice.presentation.cli.UserCommandAvailability;
+import com.epam.training.ticketservice.service.UserService;
+import org.springframework.shell.standard.ShellComponent;
+import org.springframework.shell.standard.ShellMethod;
+import org.springframework.shell.standard.ShellMethodAvailability;
+
+
+@ShellComponent
+public class AdminCommandHandler extends UserCommandAvailability {
+
+    private UserService userService;
+
+<span class="nc" id="L17">    public AdminCommandHandler(UserService userService) {</span>
+<span class="nc" id="L18">        this.userService = userService;</span>
+<span class="nc" id="L19">    }</span>
+
+    @ShellMethod(value = &quot;Signs in privileged account&quot;, key = &quot;sign in privileged&quot;)
+    @ShellMethodAvailability(&quot;isUserSignedOut&quot;)
+    public String signInPrivileged(String username, String password) {
+        try {
+<span class="nc" id="L25">            userService.login(username, password);</span>
+<span class="nc" id="L26">        } catch (UserNotFoundException | PasswordDoesntMatchException e) {</span>
+<span class="nc" id="L27">            return &quot;Login failed due to incorrect credentials&quot;;</span>
+<span class="nc" id="L28">        }</span>
+<span class="nc" id="L29">        return null;</span>
+    }
+
+    @ShellMethod(value = &quot;Describes the signed in account&quot;, key = &quot;describe account&quot;)
+    public String describeAccount() {
+<span class="nc bnc" id="L34" title="All 2 branches missed.">        if (!userService.isUserLoggedIn()) {</span>
+<span class="nc" id="L35">            return &quot;You are not signed in&quot;;</span>
+        }
+<span class="nc" id="L37">        return &quot;Signed in with privileged account '&quot; + userService.getLoggedInUser().getUsername() + &quot;'&quot;;</span>
+    }
+
+    @ShellMethod(value = &quot;Signs out of the current account&quot;, key = &quot;sign out&quot;)
+    @ShellMethodAvailability(&quot;isUserSignedIn&quot;)
+    public String signOut() {
+<span class="nc" id="L43">        userService.logout();</span>
+<span class="nc" id="L44">        return &quot;Signing out&quot;;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

@@ -4,6 +4,8 @@ import java.util.Date;
 
 public interface Screening {
     String getTitle();
+
     String getRoomName();
+
     Date getStartTime();
 }

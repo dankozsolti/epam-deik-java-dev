@@ -15,26 +15,26 @@ public class RoomCommandHandler extends UserCommandAvailability {
         this.roomService = roomService;
     }
 
-    @ShellMethod(value = "Create given room", key="create room")
+    @ShellMethod(value = "Create given room", key = "create room")
     @ShellMethodAvailability("isUserAdmin")
     public void createRoom(String roomName, String seatRowCount, String seatColCount) {
-        roomService.createRoom(roomName,Integer.parseInt(seatRowCount),Integer.parseInt(seatColCount));
+        roomService.createRoom(roomName, Integer.parseInt(seatRowCount), Integer.parseInt(seatColCount));
     }
 
-    @ShellMethod(value = "Update given room", key="update room")
+    @ShellMethod(value = "Update given room", key = "update room")
     @ShellMethodAvailability("isUserAdmin")
-    public void updateRoom(String roomName, String seatRowCount, String seatColCount){
-        roomService.updateRoom(roomName,Integer.parseInt(seatRowCount),Integer.parseInt(seatColCount));
+    public void updateRoom(String roomName, String seatRowCount, String seatColCount) {
+        roomService.updateRoom(roomName, Integer.parseInt(seatRowCount), Integer.parseInt(seatColCount));
     }
 
-    @ShellMethod(value = "Delete given room", key="delete room")
+    @ShellMethod(value = "Delete given room", key = "delete room")
     @ShellMethodAvailability("isUserAdmin")
-    public void deleteRoom(String roomName){
+    public void deleteRoom(String roomName) {
         roomService.removeRoom(roomName);
     }
 
-    @ShellMethod(value = "List all rooms", key="list rooms")
-    public String listRooms(){
+    @ShellMethod(value = "List all rooms", key = "list rooms")
+    public String listRooms() {
         return roomService.listRooms();
     }
 }

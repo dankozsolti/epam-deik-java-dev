@@ -17,9 +17,9 @@ public class MovieService {
     }
 
     public void createMovie(String title, String genre, int duration) {
-        Movie movie = new SimpleMovie(title,genre,duration);
+        Movie movie = new SimpleMovie(title, genre, duration);
         if (movieRepository.getAllMovie().stream()
-                .anyMatch(movieToCreate -> movieToCreate.getTitle().equals(title))) {
+            .anyMatch(movieToCreate -> movieToCreate.getTitle().equals(title))) {
             throw new IllegalArgumentException("Movie already exists");
         }
         movieRepository.saveMovie(movie);
@@ -27,18 +27,18 @@ public class MovieService {
 
     public void removeMovie(String title) {
         Movie movieToRemove = movieRepository.getAllMovie().stream()
-                .filter(movie -> movie.getTitle().equals(title))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Unknown movie"));
+            .filter(movie -> movie.getTitle().equals(title))
+            .findFirst()
+            .orElseThrow(() -> new IllegalArgumentException("Unknown movie"));
         movieRepository.removeMovie(movieToRemove);
     }
 
-    public void updateMovie(String title, String genre, int duration){
+    public void updateMovie(String title, String genre, int duration) {
         Movie movieToUpdate = movieRepository.getAllMovie().stream()
-                .filter(movie -> movie.getTitle().equals(title))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Unknown movie"));
-        movieRepository.updateMovie(movieToUpdate,new SimpleMovie(title, genre, duration));
+            .filter(movie -> movie.getTitle().equals(title))
+            .findFirst()
+            .orElseThrow(() -> new IllegalArgumentException("Unknown movie"));
+        movieRepository.updateMovie(movieToUpdate, new SimpleMovie(title, genre, duration));
     }
 
     public String listMovies() {
@@ -49,7 +49,7 @@ public class MovieService {
         } else {
             for (Movie m : movies) {
                 moviesString.append(m.getTitle()).append(" (").append(m.getGenre()).append(", ")
-                        .append(m.getDuration()).append(" minutes)\n");
+                    .append(m.getDuration()).append(" minutes)\n");
             }
         }
         return moviesString.toString().trim();

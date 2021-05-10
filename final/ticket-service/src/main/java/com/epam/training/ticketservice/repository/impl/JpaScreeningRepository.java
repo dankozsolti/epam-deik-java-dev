@@ -27,9 +27,9 @@ public class JpaScreeningRepository implements ScreeningRepository {
     @Override
     public void removeScreening(Screening screeningToDelete) {
         screeningDao.deleteByTitleAndRoomNameAndStartTime(
-                screeningToDelete.getTitle(),
-                screeningToDelete.getRoomName(),
-                screeningToDelete.getStartTime()
+            screeningToDelete.getTitle(),
+            screeningToDelete.getRoomName(),
+            screeningToDelete.getStartTime()
         );
     }
 
@@ -39,22 +39,22 @@ public class JpaScreeningRepository implements ScreeningRepository {
         return mapScreeningProjections(screeningProjections);
     }
 
-    private ScreeningProjection mapScreening(Screening screening){
-        return new ScreeningProjection(screening.getTitle(),screening.getRoomName(),
-                screening.getStartTime());
+    private ScreeningProjection mapScreening(Screening screening) {
+        return new ScreeningProjection(screening.getTitle(), screening.getRoomName(),
+            screening.getStartTime());
     }
 
     private List<Screening> mapScreeningProjections(
-            List<ScreeningProjection> screeningProjections) {
+        List<ScreeningProjection> screeningProjections) {
         return screeningProjections.stream()
-                .map(this::mapScreeningProjection)
-                .collect(Collectors.toList());
+            .map(this::mapScreeningProjection)
+            .collect(Collectors.toList());
     }
 
     private Screening mapScreeningProjection(ScreeningProjection screeningProjection) {
         return new SimpleScreening(screeningProjection.getTitle(),
-                screeningProjection.getRoomName(),
-                screeningProjection.getStartTime());
+            screeningProjection.getRoomName(),
+            screeningProjection.getStartTime());
     }
 
 }

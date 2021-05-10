@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="17" failures="0" name="com.training.epam.ticketservice.at.TestExecutor" time="153.759" errors="0" skipped="0">
+<testsuite tests="17" failures="0" name="com.training.epam.ticketservice.at.TestExecutor" time="179.246" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="java.vm.version" value="13.0.2+8"/>
@@ -43,7 +43,7 @@
     <property name="java.class.path" value="C:\maven\bin\..\boot\plexus-classworlds-2.6.0.jar"/>
     <property name="java.vm.specification.version" value="13"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher clean verify"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher clean verify -P requirements-grade3"/>
     <property name="java.home" value="C:\Program Files\Java\jdk-13.0.2"/>
     <property name="user.language" value="hu"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
@@ -60,21 +60,21 @@
     <property name="sun.stdout.encoding" value="cp852"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="allow creating accounts and logging in" name="the admin account exists by default and can be logged in with the correct password" time="8.829"/>
-  <testcase classname="allow creating accounts and logging in" name="the admin account can be signed out" time="8.438"/>
-  <testcase classname="allow creating accounts and logging in" name="the admin account can not be logged in with incorrect password" time="8.447"/>
-  <testcase classname="allows creating movie descriptions" name="an admin user can create and list movies" time="8.272"/>
-  <testcase classname="allows creating movie descriptions" name="an admin user can update a movie" time="8.519"/>
-  <testcase classname="allows creating movie descriptions" name="an admin user can delete a movie" time="8.916"/>
-  <testcase classname="allows creating movie descriptions" name="an unauthenticated user can list movies" time="8.597"/>
-  <testcase classname="allow creating, reading, updating and deleting rooms where the screenings will happen" name="an admin user can create and list rooms" time="8.307"/>
-  <testcase classname="allow creating, reading, updating and deleting rooms where the screenings will happen" name="an admin user can update a room" time="8.461"/>
-  <testcase classname="allow creating, reading, updating and deleting rooms where the screenings will happen" name="an admin user can delete a room" time="8.395"/>
-  <testcase classname="allow creating, reading, updating and deleting rooms where the screenings will happen" name="an unauthenticated user can list rooms" time="8.592"/>
-  <testcase classname="allows creating, deleting and listing screenings" name="The admin user can create and query screenings" time="9.932"/>
-  <testcase classname="allows creating, deleting and listing screenings" name="The admin can not create overlapping screenings in the same room" time="9.995"/>
-  <testcase classname="allows creating, deleting and listing screenings" name="The admin can create overlapping screenings in different rooms" time="10.059"/>
-  <testcase classname="allows creating, deleting and listing screenings" name="The admin can not create screenings during a 10 minute long breaks after another screening in the same room" time="10.044"/>
-  <testcase classname="allows creating, deleting and listing screenings" name="The admin can create screenings even if there is a break after a screening in a different room" time="9.961"/>
-  <testcase classname="allows creating, deleting and listing screenings" name="The admin user can delete screenings" time="9.995"/>
+  <testcase classname="allow creating accounts and logging in" name="the admin account exists by default and can be logged in with the correct password" time="9.047"/>
+  <testcase classname="allow creating accounts and logging in" name="the admin account can be signed out" time="9.131"/>
+  <testcase classname="allow creating accounts and logging in" name="the admin account can not be logged in with incorrect password" time="8.998"/>
+  <testcase classname="allows creating movie descriptions" name="an admin user can create and list movies" time="8.94"/>
+  <testcase classname="allows creating movie descriptions" name="an admin user can update a movie" time="9.868"/>
+  <testcase classname="allows creating movie descriptions" name="an admin user can delete a movie" time="10.382"/>
+  <testcase classname="allows creating movie descriptions" name="an unauthenticated user can list movies" time="10.197"/>
+  <testcase classname="allow creating, reading, updating and deleting rooms where the screenings will happen" name="an admin user can create and list rooms" time="8.955"/>
+  <testcase classname="allow creating, reading, updating and deleting rooms where the screenings will happen" name="an admin user can update a room" time="9.565"/>
+  <testcase classname="allow creating, reading, updating and deleting rooms where the screenings will happen" name="an admin user can delete a room" time="9.112"/>
+  <testcase classname="allow creating, reading, updating and deleting rooms where the screenings will happen" name="an unauthenticated user can list rooms" time="10.909"/>
+  <testcase classname="allows creating, deleting and listing screenings" name="The admin user can create and query screenings" time="12.211"/>
+  <testcase classname="allows creating, deleting and listing screenings" name="The admin can not create overlapping screenings in the same room" time="12.439"/>
+  <testcase classname="allows creating, deleting and listing screenings" name="The admin can create overlapping screenings in different rooms" time="12.724"/>
+  <testcase classname="allows creating, deleting and listing screenings" name="The admin can not create screenings during a 10 minute long breaks after another screening in the same room" time="12.647"/>
+  <testcase classname="allows creating, deleting and listing screenings" name="The admin can create screenings even if there is a break after a screening in a different room" time="12.015"/>
+  <testcase classname="allows creating, deleting and listing screenings" name="The admin user can delete screenings" time="12.106"/>
 </testsuite>

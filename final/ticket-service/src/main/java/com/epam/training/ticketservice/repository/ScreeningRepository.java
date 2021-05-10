@@ -6,7 +6,9 @@ import java.util.List;
 
 public interface ScreeningRepository {
     void saveScreening(Screening screening);
+
     void removeScreening(Screening screeningToDelete);
+
     List<Screening> getAllScreening();
 
 }

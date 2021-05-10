@@ -33,8 +33,12 @@ public class SimpleMovie implements Movie {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         SimpleMovie that = (SimpleMovie) o;
         return duration == that.duration && Objects.equals(title, that.title) && Objects.equals(genre, that.genre);
     }
@@ -46,10 +50,10 @@ public class SimpleMovie implements Movie {
 
     @Override
     public String toString() {
-        return "SimpleMovie{" +
-                "title='" + title + '\'' +
-                ", genre='" + genre + '\'' +
-                ", duration=" + duration +
-                '}';
+        return "SimpleMovie{"
+            + "title='" + title + '\''
+            + ", genre='" + genre + '\''
+            + ", duration=" + duration
+            + '}';
     }
 }

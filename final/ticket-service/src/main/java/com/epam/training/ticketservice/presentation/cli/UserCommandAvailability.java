@@ -12,22 +12,26 @@ public class UserCommandAvailability {
     private UserService userService;
 
     public Availability isUserSignedIn() {
-        if (!userService.isUserLoggedIn())
+        if (!userService.isUserLoggedIn()) {
             return Availability.unavailable("you are not signed in. Please sign in to use this command");
+        }
         return Availability.available();
     }
 
     public Availability isUserSignedOut() {
-        if (userService.isUserLoggedIn())
+        if (userService.isUserLoggedIn()) {
             return Availability.unavailable("you are signed in. Please sign out to use this command");
+        }
         return Availability.available();
     }
 
     public Availability isUserAdmin() {
-        if (!userService.isUserLoggedIn())
+        if (!userService.isUserLoggedIn()) {
             return Availability.unavailable("you are not signed in. Please sign in to use this command");
-        if (!userService.isUserAdmin())
+        }
+        if (!userService.isUserAdmin()) {
             return Availability.unavailable("you don't have enough permission to use this command.");
+        }
         return Availability.available();
     }
 

@@ -31,8 +31,12 @@ public class SimpleScreening implements Screening {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         SimpleScreening that = (SimpleScreening) o;
         return title.equals(that.title) && roomName.equals(that.roomName) && startTime.equals(that.startTime);
     }
@@ -44,10 +48,10 @@ public class SimpleScreening implements Screening {
 
     @Override
     public String toString() {
-        return "SimpleScreening{" +
-                "title='" + title + '\'' +
-                ", roomName='" + roomName + '\'' +
-                ", startTime=" + startTime +
-                '}';
+        return "SimpleScreening{"
+            + "title='" + title + '\''
+            + ", roomName='" + roomName + '\''
+            + ", startTime=" + startTime
+            + '}';
     }
 }

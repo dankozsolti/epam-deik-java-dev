@@ -22,11 +22,13 @@ public class UserService {
 
     public void login(String username, String password) throws UserNotFoundException, PasswordDoesntMatchException {
         UserProjection user = userRepository.getUserByUsername(username);
-        if (Objects.isNull(user))
+        if (Objects.isNull(user)) {
             throw new UserNotFoundException();
+        }
 
-        if (!user.getPassword().equals(password))
+        if (!user.getPassword().equals(password)) {
             throw new PasswordDoesntMatchException();
+        }
 
         loggedInUser = user;
     }

@@ -8,7 +8,10 @@ import java.util.List;
 @Repository
 public interface RoomRepository {
     void saveRoom(Room room);
+
     List<Room> getAllRoom();
+
     void removeRoom(Room roomToDelete);
+
     void updateRoom(Room oldRoom, Room newRoom);
 }

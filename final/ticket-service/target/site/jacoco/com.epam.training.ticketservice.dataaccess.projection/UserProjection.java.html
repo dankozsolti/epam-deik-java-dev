@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="hu"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserProjection.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ticket-service</a> &gt; <a href="index.source.html" class="el_package">com.epam.training.ticketservice.dataaccess.projection</a> &gt; <span class="el_source">UserProjection.java</span></div><h1>UserProjection.java</h1><pre class="source lang-java linenums">package com.epam.training.ticketservice.dataaccess.projection;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.util.Objects;
+import java.util.UUID;
+
+@Entity
+public class UserProjection {
+
+    @Id
+    @GeneratedValue
+    private UUID id;
+    private String username;
+    private String password;
+    private String role;
+
+<span class="nc" id="L20">    protected UserProjection() {</span>
+
+<span class="nc" id="L22">    }</span>
+
+<span class="nc" id="L24">    public UserProjection(String username, String password, String role) {</span>
+<span class="nc" id="L25">        this.username = username;</span>
+<span class="nc" id="L26">        this.password = password;</span>
+<span class="nc" id="L27">        this.role = role;</span>
+<span class="nc" id="L28">    }</span>
+
+    public String getPassword() {
+<span class="nc" id="L31">        return this.password;</span>
+    }
+
+    public String getUsername() {
+<span class="nc" id="L35">        return this.username;</span>
+    }
+
+    public String getRole() {
+<span class="nc" id="L39">        return this.role;</span>
+    }
+
+    @Override
+    public boolean equals(Object o) {
+<span class="nc bnc" id="L44" title="All 2 branches missed.">        if (this == o) {</span>
+<span class="nc" id="L45">            return true;</span>
+        }
+<span class="nc bnc" id="L47" title="All 4 branches missed.">        if (o == null || getClass() != o.getClass()) {</span>
+<span class="nc" id="L48">            return false;</span>
+        }
+<span class="nc" id="L50">        UserProjection that = (UserProjection) o;</span>
+<span class="nc bnc" id="L51" title="All 4 branches missed.">        return Objects.equals(id, that.id) &amp;&amp; Objects.equals(username, that.username)</span>
+<span class="nc bnc" id="L52" title="All 4 branches missed.">            &amp;&amp; Objects.equals(password, that.password) &amp;&amp; Objects.equals(role, that.role);</span>
+    }
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L57">        return Objects.hash(id, username, password, role);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

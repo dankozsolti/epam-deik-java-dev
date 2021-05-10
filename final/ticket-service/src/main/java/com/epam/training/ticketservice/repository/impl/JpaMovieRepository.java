@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Repository
 public class JpaMovieRepository implements MovieRepository {
@@ -25,8 +27,8 @@ public class JpaMovieRepository implements MovieRepository {
         movieDao.save(mapMovie(movie));
     }
 
-    private MovieProjection mapMovie(Movie movie) {
-        return new MovieProjection(movie.getTitle(),movie.getGenre(),movie.getDuration());
+    protected MovieProjection mapMovie(Movie movie) {
+        return new MovieProjection(movie.getTitle(), movie.getGenre(), movie.getDuration());
     }
 
     @Override
@@ -42,17 +44,18 @@ public class JpaMovieRepository implements MovieRepository {
 
     @Override
     public void updateMovie(Movie oldMovie, Movie newMovie) {
-        movieDao.deleteByTitle(oldMovie.getTitle());
-        movieDao.save(mapMovie(newMovie));
+        mapMovie(oldMovie).setGenre(newMovie.getGenre());
+        mapMovie(oldMovie).setDuration(newMovie.getDuration());
+        movieDao.save(mapMovie(oldMovie));
     }
 
     private List<Movie> mapMovieProjections(List<MovieProjection> movieProjections) {
         return movieProjections.stream()
-                .map(this::mapMovieProjection)
-                .collect(Collectors.toList());
+            .map(this::mapMovieProjection)
+            .collect(Collectors.toList());
     }
 
     private Movie mapMovieProjection(MovieProjection movieProjection) {
-        return new SimpleMovie(movieProjection.getTitle(),movieProjection.getGenre(),movieProjection.getDuration());
+        return new SimpleMovie(movieProjection.getTitle(), movieProjection.getGenre(), movieProjection.getDuration());
     }
 }

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="hu"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JpaRoomRepository.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ticket-service</a> &gt; <a href="index.source.html" class="el_package">com.epam.training.ticketservice.repository.impl</a> &gt; <span class="el_source">JpaRoomRepository.java</span></div><h1>JpaRoomRepository.java</h1><pre class="source lang-java linenums">package com.epam.training.ticketservice.repository.impl;
+
+import com.epam.training.ticketservice.dataaccess.dao.RoomDao;
+import com.epam.training.ticketservice.dataaccess.projection.RoomProjection;
+import com.epam.training.ticketservice.domain.interfaces.Room;
+import com.epam.training.ticketservice.domain.interfaces.impl.SimpleRoom;
+import com.epam.training.ticketservice.repository.RoomRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Repository
+public class JpaRoomRepository implements RoomRepository {
+
+    private RoomDao roomDao;
+
+    @Autowired
+<span class="fc" id="L20">    public JpaRoomRepository(RoomDao roomDao) {</span>
+<span class="fc" id="L21">        this.roomDao = roomDao;</span>
+<span class="fc" id="L22">    }</span>
+
+    @Override
+    public void saveRoom(Room room) {
+<span class="fc" id="L26">        roomDao.save(mapRoom(room));</span>
+<span class="fc" id="L27">    }</span>
+
+    @Override
+    public List&lt;Room&gt; getAllRoom() {
+<span class="fc" id="L31">        List&lt;RoomProjection&gt; roomProjections = roomDao.findAll();</span>
+<span class="fc" id="L32">        return mapRoomProjections(roomProjections);</span>
+    }
+
+    @Override
+    public void removeRoom(Room roomToDelete) {
+<span class="fc" id="L37">        roomDao.deleteByRoomName(roomToDelete.getRoomName());</span>
+<span class="fc" id="L38">    }</span>
+
+    @Override
+    public void updateRoom(Room oldRoom, Room newRoom) {
+<span class="nc" id="L42">        mapRoom(oldRoom).setSeatRowCount(newRoom.getSeatRowCount());</span>
+<span class="nc" id="L43">        mapRoom(oldRoom).setSeatColCount(newRoom.getSeatColCount());</span>
+
+<span class="nc" id="L45">        roomDao.save(mapRoom(oldRoom));</span>
+<span class="nc" id="L46">    }</span>
+
+    private RoomProjection mapRoom(Room room) {
+<span class="fc" id="L49">        return new RoomProjection(room.getRoomName(), room.getSeatRowCount(), room.getSeatColCount());</span>
+    }
+
+    private List&lt;Room&gt; mapRoomProjections(List&lt;RoomProjection&gt; roomProjections) {
+<span class="fc" id="L53">        return roomProjections.stream()</span>
+<span class="fc" id="L54">            .map(this::mapRoomProjection)</span>
+<span class="fc" id="L55">            .collect(Collectors.toList());</span>
+    }
+
+    private Room mapRoomProjection(RoomProjection roomProjection) {
+<span class="nc" id="L59">        return new SimpleRoom(roomProjection.getRoomName(), roomProjection.getSeatRowCount(),</span>
+<span class="nc" id="L60">            roomProjection.getSeatColCount());</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.Date;
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
@@ -37,5 +38,35 @@ public class ScreeningProjection {
 
     public Date getStartTime() {
         return startTime;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ScreeningProjection that = (ScreeningProjection) o;
+        return Objects.equals(id, that.id) && Objects.equals(title, that.title)
+            && Objects.equals(roomName, that.roomName) && Objects.equals(startTime, that.startTime);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title, roomName, startTime);
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setRoomName(String roomName) {
+        this.roomName = roomName;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
     }
 }

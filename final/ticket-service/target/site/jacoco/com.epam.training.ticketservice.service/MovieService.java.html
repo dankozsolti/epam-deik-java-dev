@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="hu"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MovieService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ticket-service</a> &gt; <a href="index.source.html" class="el_package">com.epam.training.ticketservice.service</a> &gt; <span class="el_source">MovieService.java</span></div><h1>MovieService.java</h1><pre class="source lang-java linenums">package com.epam.training.ticketservice.service;
+
+import com.epam.training.ticketservice.domain.interfaces.Movie;
+import com.epam.training.ticketservice.domain.interfaces.impl.SimpleMovie;
+import com.epam.training.ticketservice.repository.MovieRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class MovieService {
+
+    private MovieRepository movieRepository;
+
+<span class="fc" id="L15">    public MovieService(MovieRepository movieRepository) {</span>
+<span class="fc" id="L16">        this.movieRepository = movieRepository;</span>
+<span class="fc" id="L17">    }</span>
+
+    public void createMovie(String title, String genre, int duration) {
+<span class="fc" id="L20">        Movie movie = new SimpleMovie(title, genre, duration);</span>
+<span class="fc" id="L21">        if (movieRepository.getAllMovie().stream()</span>
+<span class="pc bpc" id="L22" title="1 of 2 branches missed.">            .anyMatch(movieToCreate -&gt; movieToCreate.getTitle().equals(title))) {</span>
+<span class="nc" id="L23">            throw new IllegalArgumentException(&quot;Movie already exists&quot;);</span>
+        }
+<span class="fc" id="L25">        movieRepository.saveMovie(movie);</span>
+<span class="fc" id="L26">    }</span>
+
+    public void removeMovie(String title) {
+<span class="fc" id="L29">        Movie movieToRemove = movieRepository.getAllMovie().stream()</span>
+<span class="fc" id="L30">            .filter(movie -&gt; movie.getTitle().equals(title))</span>
+<span class="fc" id="L31">            .findFirst()</span>
+<span class="pc" id="L32">            .orElseThrow(() -&gt; new IllegalArgumentException(&quot;Unknown movie&quot;));</span>
+<span class="fc" id="L33">        movieRepository.removeMovie(movieToRemove);</span>
+<span class="fc" id="L34">    }</span>
+
+    public void updateMovie(String title, String genre, int duration) {
+<span class="fc" id="L37">        Movie movieToUpdate = movieRepository.getAllMovie().stream()</span>
+<span class="fc" id="L38">            .filter(movie -&gt; movie.getTitle().equals(title))</span>
+<span class="fc" id="L39">            .findFirst()</span>
+<span class="pc" id="L40">            .orElseThrow(() -&gt; new IllegalArgumentException(&quot;Unknown movie&quot;));</span>
+<span class="fc" id="L41">        movieRepository.updateMovie(movieToUpdate, new SimpleMovie(title, genre, duration));</span>
+<span class="fc" id="L42">    }</span>
+
+    public String listMovies() {
+<span class="fc" id="L45">        List&lt;Movie&gt; movies = movieRepository.getAllMovie();</span>
+<span class="fc" id="L46">        StringBuilder moviesString = new StringBuilder();</span>
+<span class="pc bpc" id="L47" title="1 of 2 branches missed.">        if (movies.isEmpty()) {</span>
+<span class="fc" id="L48">            moviesString.append(&quot;There are no movies at the moment&quot;);</span>
+        } else {
+<span class="nc bnc" id="L50" title="All 2 branches missed.">            for (Movie m : movies) {</span>
+<span class="nc" id="L51">                moviesString.append(m.getTitle()).append(&quot; (&quot;).append(m.getGenre()).append(&quot;, &quot;)</span>
+<span class="nc" id="L52">                    .append(m.getDuration()).append(&quot; minutes)\n&quot;);</span>
+<span class="nc" id="L53">            }</span>
+        }
+<span class="fc" id="L55">        return moviesString.toString().trim();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

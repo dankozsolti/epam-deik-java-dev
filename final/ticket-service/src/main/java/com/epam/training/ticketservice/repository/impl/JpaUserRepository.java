@@ -16,8 +16,6 @@ public class JpaUserRepository implements UserRepository {
     @Override
     public UserProjection getUserByUsername(String username) {
         Optional<UserProjection> user = userDao.findByUsername(username);
-        if (!user.isPresent())
-            return null;
-        return user.get();
+        return user.orElse(null);
     }
 }

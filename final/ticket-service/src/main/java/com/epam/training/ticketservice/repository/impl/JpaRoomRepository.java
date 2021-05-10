@@ -39,21 +39,24 @@ public class JpaRoomRepository implements RoomRepository {
 
     @Override
     public void updateRoom(Room oldRoom, Room newRoom) {
-        roomDao.deleteByRoomName(oldRoom.getRoomName());
-        roomDao.save(mapRoom(newRoom));
+        mapRoom(oldRoom).setSeatRowCount(newRoom.getSeatRowCount());
+        mapRoom(oldRoom).setSeatColCount(newRoom.getSeatColCount());
+
+        roomDao.save(mapRoom(oldRoom));
     }
 
     private RoomProjection mapRoom(Room room) {
-        return new RoomProjection(room.getRoomName(),room.getSeatRowCount(),room.getSeatColCount());
+        return new RoomProjection(room.getRoomName(), room.getSeatRowCount(), room.getSeatColCount());
     }
 
     private List<Room> mapRoomProjections(List<RoomProjection> roomProjections) {
         return roomProjections.stream()
-                .map(this::mapRoomProjection)
-                .collect(Collectors.toList());
+            .map(this::mapRoomProjection)
+            .collect(Collectors.toList());
     }
 
     private Room mapRoomProjection(RoomProjection roomProjection) {
-        return new SimpleRoom(roomProjection.getRoomName(),roomProjection.getSeatRowCount(),roomProjection.getSeatColCount());
+        return new SimpleRoom(roomProjection.getRoomName(), roomProjection.getSeatRowCount(),
+            roomProjection.getSeatColCount());
     }
 }
