@@ -14,34 +14,34 @@ public class AdminCommandHandler extends UserCommandAvailability {
 
     private UserService userService;
 
-<span class="nc" id="L17">    public AdminCommandHandler(UserService userService) {</span>
-<span class="nc" id="L18">        this.userService = userService;</span>
-<span class="nc" id="L19">    }</span>
+<span class="fc" id="L17">    public AdminCommandHandler(UserService userService) {</span>
+<span class="fc" id="L18">        this.userService = userService;</span>
+<span class="fc" id="L19">    }</span>
 
     @ShellMethod(value = &quot;Signs in privileged account&quot;, key = &quot;sign in privileged&quot;)
     @ShellMethodAvailability(&quot;isUserSignedOut&quot;)
     public String signInPrivileged(String username, String password) {
         try {
-<span class="nc" id="L25">            userService.login(username, password);</span>
+<span class="fc" id="L25">            userService.login(username, password);</span>
 <span class="nc" id="L26">        } catch (UserNotFoundException | PasswordDoesntMatchException e) {</span>
 <span class="nc" id="L27">            return &quot;Login failed due to incorrect credentials&quot;;</span>
-<span class="nc" id="L28">        }</span>
-<span class="nc" id="L29">        return null;</span>
+<span class="fc" id="L28">        }</span>
+<span class="fc" id="L29">        return null;</span>
     }
 
     @ShellMethod(value = &quot;Describes the signed in account&quot;, key = &quot;describe account&quot;)
     public String describeAccount() {
-<span class="nc bnc" id="L34" title="All 2 branches missed.">        if (!userService.isUserLoggedIn()) {</span>
-<span class="nc" id="L35">            return &quot;You are not signed in&quot;;</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        if (!userService.isUserLoggedIn()) {</span>
+<span class="fc" id="L35">            return &quot;You are not signed in&quot;;</span>
         }
-<span class="nc" id="L37">        return &quot;Signed in with privileged account '&quot; + userService.getLoggedInUser().getUsername() + &quot;'&quot;;</span>
+<span class="fc" id="L37">        return &quot;Signed in with privileged account '&quot; + userService.getLoggedInUser().getUsername() + &quot;'&quot;;</span>
     }
 
     @ShellMethod(value = &quot;Signs out of the current account&quot;, key = &quot;sign out&quot;)
     @ShellMethodAvailability(&quot;isUserSignedIn&quot;)
     public String signOut() {
-<span class="nc" id="L43">        userService.logout();</span>
-<span class="nc" id="L44">        return &quot;Signing out&quot;;</span>
+<span class="fc" id="L43">        userService.logout();</span>
+<span class="fc" id="L44">        return &quot;Signing out&quot;;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

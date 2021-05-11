@@ -13,57 +13,67 @@ public class MovieProjection {
     @Id
     @GeneratedValue
     private UUID id;
+
     private String title;
     private String genre;
     private int duration;
 
 
-<span class="fc" id="L21">    public MovieProjection(String title, String genre, int duration) {</span>
-<span class="fc" id="L22">        this.title = title;</span>
-<span class="fc" id="L23">        this.genre = genre;</span>
-<span class="fc" id="L24">        this.duration = duration;</span>
-<span class="fc" id="L25">    }</span>
+<span class="fc" id="L22">    public MovieProjection(String title, String genre, int duration) {</span>
+<span class="fc" id="L23">        this.title = title;</span>
+<span class="fc" id="L24">        this.genre = genre;</span>
+<span class="fc" id="L25">        this.duration = duration;</span>
+<span class="fc" id="L26">    }</span>
 
-<span class="nc" id="L27">    protected MovieProjection() {</span>
+<span class="nc" id="L28">    protected MovieProjection() {</span>
 
-<span class="nc" id="L29">    }</span>
+<span class="nc" id="L30">    }</span>
 
     public String getTitle() {
-<span class="nc" id="L32">        return title;</span>
+<span class="nc" id="L33">        return title;</span>
     }
 
     public String getGenre() {
-<span class="nc" id="L36">        return genre;</span>
+<span class="nc" id="L37">        return genre;</span>
     }
 
     public int getDuration() {
-<span class="nc" id="L40">        return duration;</span>
+<span class="nc" id="L41">        return duration;</span>
     }
 
     @Override
     public boolean equals(Object o) {
-<span class="pc bpc" id="L45" title="1 of 2 branches missed.">        if (this == o) {</span>
-<span class="nc" id="L46">            return true;</span>
+<span class="pc bpc" id="L46" title="1 of 2 branches missed.">        if (this == o) {</span>
+<span class="nc" id="L47">            return true;</span>
         }
-<span class="pc bpc" id="L48" title="2 of 4 branches missed.">        if (o == null || getClass() != o.getClass()) {</span>
-<span class="nc" id="L49">            return false;</span>
+<span class="pc bpc" id="L49" title="2 of 4 branches missed.">        if (o == null || getClass() != o.getClass()) {</span>
+<span class="nc" id="L50">            return false;</span>
         }
-<span class="fc" id="L51">        MovieProjection that = (MovieProjection) o;</span>
-<span class="pc bpc" id="L52" title="2 of 4 branches missed.">        return duration == that.duration &amp;&amp; Objects.equals(id, that.id)</span>
-<span class="pc bpc" id="L53" title="2 of 4 branches missed.">            &amp;&amp; Objects.equals(title, that.title) &amp;&amp; Objects.equals(genre, that.genre);</span>
+<span class="fc" id="L52">        MovieProjection that = (MovieProjection) o;</span>
+<span class="pc bpc" id="L53" title="2 of 4 branches missed.">        return duration == that.duration &amp;&amp; Objects.equals(id, that.id)</span>
+<span class="pc bpc" id="L54" title="2 of 4 branches missed.">            &amp;&amp; Objects.equals(title, that.title) &amp;&amp; Objects.equals(genre, that.genre);</span>
     }
 
     @Override
     public int hashCode() {
-<span class="nc" id="L58">        return Objects.hash(id, title, genre, duration);</span>
+<span class="nc" id="L59">        return Objects.hash(id, title, genre, duration);</span>
     }
 
     public void setGenre(String genre) {
-<span class="nc" id="L62">        this.genre = genre;</span>
-<span class="nc" id="L63">    }</span>
+<span class="nc" id="L63">        this.genre = genre;</span>
+<span class="nc" id="L64">    }</span>
 
     public void setDuration(int duration) {
-<span class="nc" id="L66">        this.duration = duration;</span>
-<span class="nc" id="L67">    }</span>
+<span class="nc" id="L67">        this.duration = duration;</span>
+<span class="nc" id="L68">    }</span>
+
+    @Override
+    public String toString() {
+<span class="nc" id="L72">        return &quot;MovieProjection{&quot;</span>
+            + &quot;title='&quot; + title + '\''
+            + &quot;, genre='&quot; + genre + '\''
+            + &quot;, duration=&quot; + duration
+            + '}';
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

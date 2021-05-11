@@ -9,14 +9,14 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-<span class="nc" id="L12">public class JpaUserRepository implements UserRepository {</span>
+<span class="fc" id="L12">public class JpaUserRepository implements UserRepository {</span>
     @Autowired
     private UserDao userDao;
 
     @Override
     public UserProjection getUserByUsername(String username) {
-<span class="nc" id="L18">        Optional&lt;UserProjection&gt; user = userDao.findByUsername(username);</span>
-<span class="nc" id="L19">        return user.orElse(null);</span>
+<span class="fc" id="L18">        Optional&lt;UserProjection&gt; user = userDao.findByUsername(username);</span>
+<span class="fc" id="L19">        return user.orElse(null);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

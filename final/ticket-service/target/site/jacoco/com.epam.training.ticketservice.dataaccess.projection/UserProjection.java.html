@@ -21,18 +21,18 @@ public class UserProjection {
 
 <span class="nc" id="L22">    }</span>
 
-<span class="nc" id="L24">    public UserProjection(String username, String password, String role) {</span>
-<span class="nc" id="L25">        this.username = username;</span>
-<span class="nc" id="L26">        this.password = password;</span>
-<span class="nc" id="L27">        this.role = role;</span>
-<span class="nc" id="L28">    }</span>
+<span class="fc" id="L24">    public UserProjection(String username, String password, String role) {</span>
+<span class="fc" id="L25">        this.username = username;</span>
+<span class="fc" id="L26">        this.password = password;</span>
+<span class="fc" id="L27">        this.role = role;</span>
+<span class="fc" id="L28">    }</span>
 
     public String getPassword() {
-<span class="nc" id="L31">        return this.password;</span>
+<span class="fc" id="L31">        return this.password;</span>
     }
 
     public String getUsername() {
-<span class="nc" id="L35">        return this.username;</span>
+<span class="fc" id="L35">        return this.username;</span>
     }
 
     public String getRole() {
@@ -41,8 +41,8 @@ public class UserProjection {
 
     @Override
     public boolean equals(Object o) {
-<span class="nc bnc" id="L44" title="All 2 branches missed.">        if (this == o) {</span>
-<span class="nc" id="L45">            return true;</span>
+<span class="pc bpc" id="L44" title="1 of 2 branches missed.">        if (this == o) {</span>
+<span class="fc" id="L45">            return true;</span>
         }
 <span class="nc bnc" id="L47" title="All 4 branches missed.">        if (o == null || getClass() != o.getClass()) {</span>
 <span class="nc" id="L48">            return false;</span>

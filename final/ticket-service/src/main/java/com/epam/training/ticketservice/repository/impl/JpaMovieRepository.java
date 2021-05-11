@@ -31,6 +31,15 @@ public class JpaMovieRepository implements MovieRepository {
         return new MovieProjection(movie.getTitle(), movie.getGenre(), movie.getDuration());
     }
 
+    private MovieProjection findMovie(Movie movie) {
+        Optional<MovieProjection> movieProjection =
+            movieDao.findByTitle(movie.getTitle());
+        if (!movieProjection.isPresent()) {
+            return null;
+        }
+        return movieProjection.get();
+    }
+
     @Override
     public List<Movie> getAllMovie() {
         List<MovieProjection> movieProjections = movieDao.findAll();
@@ -44,9 +53,10 @@ public class JpaMovieRepository implements MovieRepository {
 
     @Override
     public void updateMovie(Movie oldMovie, Movie newMovie) {
-        mapMovie(oldMovie).setGenre(newMovie.getGenre());
-        mapMovie(oldMovie).setDuration(newMovie.getDuration());
-        movieDao.save(mapMovie(oldMovie));
+        MovieProjection movieProjection = findMovie(oldMovie);
+        movieProjection.setGenre(newMovie.getGenre());
+        movieProjection.setDuration(newMovie.getDuration());
+        movieDao.save(movieProjection);
     }
 
     private List<Movie> mapMovieProjections(List<MovieProjection> movieProjections) {

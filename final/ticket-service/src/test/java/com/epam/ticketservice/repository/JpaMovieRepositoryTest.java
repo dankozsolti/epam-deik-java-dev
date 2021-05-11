@@ -7,14 +7,23 @@ import com.epam.training.ticketservice.domain.interfaces.impl.SimpleMovie;
 import com.epam.training.ticketservice.repository.impl.JpaMovieRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.util.Arrays;
+import java.util.Optional;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
+@ExtendWith(MockitoExtension.class)
 public class JpaMovieRepositoryTest {
 
+    @InjectMocks
     private JpaMovieRepository underTest;
 
     @Mock
@@ -59,22 +68,4 @@ public class JpaMovieRepositoryTest {
         //Then
         verify(movieDao, times(1)).findAll();
     }
-
-    /*@Test
-    public void testUpdateMovieShouldUpdateSingleMovie() {
-        //Given
-        Movie oldMovie = new SimpleMovie("testMovie", "testGenre", 90);
-        Movie newMovie = new SimpleMovie("testMovie", "testGenre2", 180);
-        MovieProjection movieProjection = new MovieProjection(oldMovie.getTitle(),
-            oldMovie.getGenre(),oldMovie.getDuration());
-
-        //When
-        underTest.updateMovie(oldMovie,newMovie);
-
-        //Then
-        movieProjection.setGenre(newMovie.getGenre());
-        movieProjection.setDuration(newMovie.getDuration());
-        verify(movieDao,times(1)).save(movieProjection);
-    }*/
-
 }

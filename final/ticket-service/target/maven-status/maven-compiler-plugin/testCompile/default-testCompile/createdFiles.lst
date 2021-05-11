@@ -1,5 +1,6 @@
 com\epam\ticketservice\repository\JpaMovieRepositoryTest.class
 com\epam\ticketservice\repository\JpaRoomRepositoryTest.class
+com\epam\ticketservice\repository\JpaUserRepositoryTest.class
 com\epam\ticketservice\presentation\cli\handler\MovieCommandHandlerTest.class
 com\epam\ticketservice\repository\JpaScreeningRepositoryTest.class
 com\epam\ticketservice\presentation\cli\handler\ScreeningCommandHandlerTest.class
@@ -7,3 +8,5 @@ com\epam\ticketservice\service\MovieServiceTest.class
 com\epam\ticketservice\presentation\cli\handler\RoomCommandHandlerTest.class
 com\epam\ticketservice\service\ScreeningServiceTest.class
 com\epam\ticketservice\service\RoomServiceTest.class
+com\epam\ticketservice\presentation\cli\handler\AdminCommandHandlerTest.class
+com\epam\ticketservice\service\UserServiceTest.class

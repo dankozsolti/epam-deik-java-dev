@@ -31,32 +31,42 @@ public class JpaMovieRepository implements MovieRepository {
 <span class="fc" id="L31">        return new MovieProjection(movie.getTitle(), movie.getGenre(), movie.getDuration());</span>
     }
 
+    private MovieProjection findMovie(Movie movie) {
+<span class="nc" id="L35">        Optional&lt;MovieProjection&gt; movieProjection =</span>
+<span class="nc" id="L36">            movieDao.findByTitle(movie.getTitle());</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">        if (!movieProjection.isPresent()) {</span>
+<span class="nc" id="L38">            return null;</span>
+        }
+<span class="nc" id="L40">        return movieProjection.get();</span>
+    }
+
     @Override
     public List&lt;Movie&gt; getAllMovie() {
-<span class="fc" id="L36">        List&lt;MovieProjection&gt; movieProjections = movieDao.findAll();</span>
-<span class="fc" id="L37">        return mapMovieProjections(movieProjections);</span>
+<span class="fc" id="L45">        List&lt;MovieProjection&gt; movieProjections = movieDao.findAll();</span>
+<span class="fc" id="L46">        return mapMovieProjections(movieProjections);</span>
     }
 
     @Override
     public void removeMovie(Movie movieToDelete) {
-<span class="fc" id="L42">        movieDao.deleteByTitle(movieToDelete.getTitle());</span>
-<span class="fc" id="L43">    }</span>
+<span class="fc" id="L51">        movieDao.deleteByTitle(movieToDelete.getTitle());</span>
+<span class="fc" id="L52">    }</span>
 
     @Override
     public void updateMovie(Movie oldMovie, Movie newMovie) {
-<span class="nc" id="L47">        mapMovie(oldMovie).setGenre(newMovie.getGenre());</span>
-<span class="nc" id="L48">        mapMovie(oldMovie).setDuration(newMovie.getDuration());</span>
-<span class="nc" id="L49">        movieDao.save(mapMovie(oldMovie));</span>
-<span class="nc" id="L50">    }</span>
+<span class="nc" id="L56">        MovieProjection movieProjection = findMovie(oldMovie);</span>
+<span class="nc" id="L57">        movieProjection.setGenre(newMovie.getGenre());</span>
+<span class="nc" id="L58">        movieProjection.setDuration(newMovie.getDuration());</span>
+<span class="nc" id="L59">        movieDao.save(movieProjection);</span>
+<span class="nc" id="L60">    }</span>
 
     private List&lt;Movie&gt; mapMovieProjections(List&lt;MovieProjection&gt; movieProjections) {
-<span class="fc" id="L53">        return movieProjections.stream()</span>
-<span class="fc" id="L54">            .map(this::mapMovieProjection)</span>
-<span class="fc" id="L55">            .collect(Collectors.toList());</span>
+<span class="fc" id="L63">        return movieProjections.stream()</span>
+<span class="fc" id="L64">            .map(this::mapMovieProjection)</span>
+<span class="fc" id="L65">            .collect(Collectors.toList());</span>
     }
 
     private Movie mapMovieProjection(MovieProjection movieProjection) {
-<span class="nc" id="L59">        return new SimpleMovie(movieProjection.getTitle(), movieProjection.getGenre(), movieProjection.getDuration());</span>
+<span class="nc" id="L69">        return new SimpleMovie(movieProjection.getTitle(), movieProjection.getGenre(), movieProjection.getDuration());</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

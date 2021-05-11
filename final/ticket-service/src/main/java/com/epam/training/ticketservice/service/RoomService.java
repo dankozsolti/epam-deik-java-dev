@@ -53,7 +53,7 @@ public class RoomService {
                 roomString.append("Room ").append(r.getRoomName()).append(" with ")
                     .append(r.getSeatRowCount() * r.getSeatColCount()).append(" seats, ")
                     .append(r.getSeatRowCount()).append(" rows and ")
-                    .append(r.getSeatColCount()).append(" columns");
+                    .append(r.getSeatColCount()).append(" columns\n");
             }
         }
         return roomString.toString().trim();

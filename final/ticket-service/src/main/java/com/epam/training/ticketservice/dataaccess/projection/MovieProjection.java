@@ -13,6 +13,7 @@ public class MovieProjection {
     @Id
     @GeneratedValue
     private UUID id;
+
     private String title;
     private String genre;
     private int duration;
@@ -64,5 +65,14 @@ public class MovieProjection {
 
     public void setDuration(int duration) {
         this.duration = duration;
+    }
+
+    @Override
+    public String toString() {
+        return "MovieProjection{"
+            + "title='" + title + '\''
+            + ", genre='" + genre + '\''
+            + ", duration=" + duration
+            + '}';
     }
 }
